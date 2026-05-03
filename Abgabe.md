@@ -45,16 +45,16 @@ Zunächste habe ich mit **git log --oneline --decorate --graph** die ganzen comm
 - Direkt nach dem Shop (Tag3) sein Brot. (Als Getränk den Heiltrank)
 
 # Aufgabe 2.2
-Ich hatte leider Probleme mit dem Klonen und die Commits sind dann verloren gegangen. (selbst mit git reflog --all) 
-4.5 mit "git commit --amend" kann ich leider nur beschreiben.
 - In der stats.md die EXP auf 42 gesetzt und mit "git commit --amend" den letzten commit (Tag 4.5) als Basis genommen und diese commitet.
-
-4.6-4.8 sind als commits da
-Ich entschuldige mich dafür
+- Tag 04.6 Erweiterung in questlog.md
+- Tag 04.7 questlog.md und stats geändert
+- Tag 04.8 Waffe und Rüstung von stats.md entfernt und in gear.md hinzugefügt
 
 # Aufgabe 2.3
 
-Meiner Meinung nach...
+Meiner Meinung nach sollen gute Commits eine kurze, verständliche und eindeutige Nachricht haben.
+Sätze mit "paar" "some" "fix stuff" ist ungenügend da es nicht klar / eindeutig sind.
+Bsp zu der Aufgabe vorher, was gut wäre ist "moved gear from stats.md to gear.md"
 
 **Commit 46530b6:**
 - Rebase nicht als Commit-msg dokumentieren
@@ -66,3 +66,56 @@ Meiner Meinung nach...
 - "add some on use methods" = some ist unpräzise und *welche Methoden*?
 - "use new item onUse signature" würde das "use new" umändern zu update / refactor
 
+# Gradle
+Es wurde ein neues Gradle Projekt eröffnet mit "gradle init" und den werten
+- Application
+- Java
+- Java25
+- Groovy
+- JUnitJupiter
+
+beim runnen mit **./gradlew :app:run** kam Folgendes raus
+```> Task :app:run
+Hello World!
+ ```
+# Wichtige Tasks
+
+Mit dem Befehl **./gradlew tasks** kann man folgened wichtige Tasks sich anzeigen lassen
+- ```./gradlew :app:run``` Pogramm starten
+- ```./gradlew build``` Baut das Projekt auf
+- ```./gradlew test ``` Führt Tests aus
+
+# Projektlayout
+```
+src/main/java     -> Java-Quellcode
+src/test/java     -> Tests
+build.gradle      -> Build-Konfiguration
+settings.gradle   -> Projektname
+build/            -> erzeugte Dateien
+```
+
+# Java / IDE
+java --version gibt uns die Java Version aus (Bei meiner Seite ist es Java 25).
+Alle Aufgaben und das Projekt wurden in IntelliJ geöffnet. 
+
+# Spotless
+Für die Anwendung von Spotless folgende Befehle:
+```
+.\gradlew.bat spotlessApply → formatiert den Code automatisch
+.\gradlew.bat spotlessCheck → prüft nur, ob alles korrekt formatiert ist
+```
+
+Die Hinzufügung unter gradle\app\src\build.gradle
+```
+plugins {
+    // Apply the application plugin to add support for building a CLI application in Java.
+    id 'application'
+    id 'com.diffplug.spotless' version '6.25.0'
+}
+
+spotless {
+    java {
+        googleJavaFormat()
+    }
+}
+```
